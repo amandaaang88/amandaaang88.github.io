@@ -1,77 +1,159 @@
----
----
+/* ---------------------------------------------------------
+   Palette
+   navy ink   #0D1B2A   base background
+   steel      #33475B   secondary panels
+   brass      #C9A24B   primary accent (rigging / brass fittings)
+   rust       #B4532A   sparing secondary accent (safety orange)
+   paper      #F3EFE6   text on dark
+--------------------------------------------------------- */
 
-@import "{{ site.theme }}";
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background-color: #f2f4f6;
-  background-image: url("/assets/images/crane-pattern.svg");
-  background-repeat: repeat;
-  background-size: 220px 220px;
-  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: #0D1B2A;
+  font-family: 'Source Serif 4', serif;
+  color: #F3EFE6;
 }
 
-.page-header {
-  background-color: #3d4a58;
-  background-image: linear-gradient(135deg, #3d4a58 0%, #56667a 100%);
-  padding: 3rem 1rem;
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
 }
 
-.project-name {
+/* --- crossfading photo stack --- */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation-name: crossfade;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  filter: saturate(0.85) contrast(1.05);
+}
+
+.hero-slide--empty {
+  background: linear-gradient(135deg, #0D1B2A, #33475B);
+}
+
+@keyframes crossfade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }
+  28%  { opacity: 1; }
+  33%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { animation: none; opacity: 1; }
+  .hero-slide:not(:first-child) { display: none; }
+}
+
+/* --- overlay + blueprint grid, for legibility & texture --- */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13,27,42,0.55) 0%,
+    rgba(13,27,42,0.30) 40%,
+    rgba(13,27,42,0.92) 100%
+  );
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(243,239,230,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243,239,230,0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* --- text content --- */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 8vw 4rem;
+  max-width: 46rem;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C9A24B;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-family: 'Big Shoulders Display', sans-serif;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #F3EFE6;
+  margin-bottom: 1.25rem;
 }
 
-.project-tagline {
-  opacity: 0.85;
-  font-weight: 300;
+.sub {
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.55;
+  font-weight: 400;
+  color: rgba(243,239,230,0.82);
+  max-width: 34rem;
 }
 
-.main-content {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 14px;
-  padding: 2.5rem;
-  margin-top: -2rem;
-  box-shadow: 0 10px 30px rgba(61, 74, 88, 0.12);
-  max-width: 800px;
+/* --- spec bar: signature element, reads like a load chart --- */
+.spec-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(201,162,75,0.35);
+  background: rgba(13,27,42,0.75);
+  backdrop-filter: blur(6px);
 }
 
-.main-content img {
-  max-width: 100%;
-  border-radius: 10px;
-  margin: 1rem 0;
+.spec {
+  flex: 1 1 12rem;
+  padding: 1.1rem 8vw 1.1rem 8vw;
+  border-right: 1px solid rgba(201,162,75,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.profile-photo {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-  float: right;
-  margin-left: 1.5rem;
+.spec:last-child { border-right: none; }
+
+.spec-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: rgba(243,239,230,0.55);
 }
 
-.main-content h2 {
-  color: #3d4a58;
-  border-bottom: 2px solid #d9dee3;
-  padding-bottom: 0.4rem;
-  margin-top: 2rem;
+.spec-value {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: #F3EFE6;
 }
 
-.main-content a {
-  color: #2f5f8a;
-}
-
-.main-content code {
-  background-color: #eef1f4;
-  color: #3d4a58;
-  border-radius: 4px;
-}
-
-.main-content hr {
-  border: none;
-  border-top: 1px solid #e2e6ea;
-  margin: 1.5rem 0;
+@media (max-width: 640px) {
+  .hero-content { padding: 0 6vw 3rem; }
+  .spec { padding: 1rem 6vw; }
 }

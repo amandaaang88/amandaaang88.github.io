@@ -1,1 +1,1 @@
-# amandaaang88.github.io
+Welcome to Amandaa Ang Website =)

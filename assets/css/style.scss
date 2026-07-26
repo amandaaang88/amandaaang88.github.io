@@ -4,7 +4,11 @@
 @import "{{ site.theme }}";
 
 body {
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
+  background-color: #f5f7fa;
+  background-image: url("/assets/images/crane-bg.svg");
+  background-repeat: no-repeat;
+  background-position: center 60px;
+  background-size: 700px auto;
   background-attachment: fixed;
 }
 
@@ -20,4 +24,3 @@ body {
   margin-top: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
-

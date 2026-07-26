@@ -4,23 +4,74 @@
 @import "{{ site.theme }}";
 
 body {
-  background-color: #f5f7fa;
-  background-image: url("/assets/images/crane-bg.svg");
-  background-repeat: no-repeat;
-  background-position: center 60px;
-  background-size: 700px auto;
-  background-attachment: fixed;
+  background-color: #f2f4f6;
+  background-image: url("/assets/images/crane-pattern.svg");
+  background-repeat: repeat;
+  background-size: 220px 220px;
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 .page-header {
-  background-color: #1f3a5f;
-  background-image: linear-gradient(120deg, #1f3a5f, #2c4f7c);
+  background-color: #3d4a58;
+  background-image: linear-gradient(135deg, #3d4a58 0%, #56667a 100%);
+  padding: 3rem 1rem;
+}
+
+.project-name {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.project-tagline {
+  opacity: 0.85;
+  font-weight: 300;
 }
 
 .main-content {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  padding: 2.5rem;
+  margin-top: -2rem;
+  box-shadow: 0 10px 30px rgba(61, 74, 88, 0.12);
+  max-width: 800px;
+}
+
+.main-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+.profile-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  float: right;
+  margin-left: 1.5rem;
+}
+
+.main-content h2 {
+  color: #3d4a58;
+  border-bottom: 2px solid #d9dee3;
+  padding-bottom: 0.4rem;
   margin-top: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.main-content a {
+  color: #2f5f8a;
+}
+
+.main-content code {
+  background-color: #eef1f4;
+  color: #3d4a58;
+  border-radius: 4px;
+}
+
+.main-content hr {
+  border: none;
+  border-top: 1px solid #e2e6ea;
+  margin: 1.5rem 0;
 }
